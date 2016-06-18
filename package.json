@@ -1,0 +1,22 @@
+{
+  "name": "film-sf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conniedaisy/filmSF.git"
+  },
+  "author": "conniedaisy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conniedaisy/filmSF/issues"
+  },
+  "homepage": "https://github.com/conniedaisy/filmSF#readme",
+  "dependencies": {
+    "react": "^15.1.0"
+  }
+}
