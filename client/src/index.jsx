@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SearchBar from './SearchBar.jsx';
+import Map from './Map.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,13 +11,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Hello
+        <SearchBar />
+        <Map />
       </div>
     );
   }
 };
 
 ReactDOM.render(
-  <App/>,
+  <App />,
   document.getElementById('app')
 );
