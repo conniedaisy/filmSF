@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import accessTokens from './accessTokens.js';
-// import mapboxStyle from './mapboxStyle.js';
+import { Map } from 'immutable';
 
 const containerStyle = {
   height: "80vh",
@@ -14,12 +14,20 @@ class MyMap extends React.Component {
     this.state = {
       center: [-122.431297, 37.773972],
       zoom: 11,
-      locations: {},
+      locations: [],
     };
   }
 
   componentWillMount() {
-
+    // this.props.data;
+    const dummyPosition = [-122.431297, 37.773972];
+    this.setState({
+      locations: [
+        {
+          position: dummyPosition,
+        },
+      ],
+    });
   }
 
   render() {
@@ -33,10 +41,17 @@ class MyMap extends React.Component {
           containerStyle={containerStyle}>
 
           <Layer
-            id="pin"
+            id="marker"
             type="symbol"
             layout={{ "icon-image": "marker-15" }}>
-            {}
+            { 
+              this.state.locations.map((location, index) => {
+                <Feature 
+                  key={index}
+                  coordinates={location.position}
+                />
+              })
+            }
           </Layer>
 
         </ReactMapboxGl>
