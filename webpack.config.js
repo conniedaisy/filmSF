@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    './client/src/index.jsx'
+    './client/src/App.jsx'
   ],
   module: {
     loaders: [

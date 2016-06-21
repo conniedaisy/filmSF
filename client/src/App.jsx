@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import SearchBar from './SearchBar.jsx';
-import Map from './Map.jsx';
+import MyMap from './MyMap.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar />
-        <Map />
+        <MyMap />
       </div>
     );
   }
