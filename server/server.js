@@ -9,6 +9,8 @@ app.get('/', handlers.root);
 
 app.get('/dist/bundle.js', handlers.bundle);
 
+app.get('/getCoors', handlers.getCoors);
+
 app.listen(3000, function () {
   console.log('Listening on port 3000!');
 });

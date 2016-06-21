@@ -24,10 +24,14 @@ class App extends React.Component {
       radius: '6500',
     };
     console.log(search.query);
-    const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search.query}&key=${search.key}&location=${search.lat},${search.long}&radius=${search.radius}`;
+    const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?
+      query=${search.query}
+      &key=${search.key}
+      &location=${search.lat},${search.long}
+      &radius=${search.radius}`;
 
-    $.get(placesEndpoint, (results, error) => {
-      console.log('google places: ', results);
+    $.get('http://localhost:3000/getCoors', (results, error) => {
+      console.log('getCoors: ', results);
     });
 
     const numToShow = 10;
@@ -39,6 +43,8 @@ class App extends React.Component {
       }
       console.log('results: ', this.state.movieData);
     });
+
+    // TODO: send to server
   }
 
   render() {

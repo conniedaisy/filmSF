@@ -19,7 +19,7 @@ class MyMap extends React.Component {
   }
 
   componentWillMount() {
-    
+
   }
 
   render() {
