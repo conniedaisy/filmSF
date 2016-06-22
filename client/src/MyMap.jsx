@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import accessTokens from './accessTokens.js';
-import { Map } from 'immutable';
-// import mapboxStyle from './mapboxStyle.js';
-// import { Maki } from 'maki';
-import MapboxCSS from "./../../node_modules/react-mapbox-gl/dist/mapbox-css/mapbox-gl.css";
+// import MapboxCSS from "./../../node_modules/react-mapbox-gl/dist/mapbox-css/mapbox-gl.css";
 
 
 const containerStyle = {
   height: "80vh",
   width: "80vw",
 };
+
 
 class MyMap extends React.Component {
   constructor(props) {
