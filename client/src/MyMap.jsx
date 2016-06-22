@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import accessTokens from './accessTokens.js';
-// import MapboxCSS from "./../../node_modules/react-mapbox-gl/dist/mapbox-css/mapbox-gl.css";
 
 
 const containerStyle = {
@@ -18,16 +17,9 @@ class MyMap extends React.Component {
       zoom: 11,
       locations: this.props.movieData,
     };
-    console.log('-->', this.state.locations)
   }
 
-  // componentWillReceiveProps() {
-  //   // const dummyPosition = [-122.431297, 37.773972];
-  //   console.log('props: ', this.props.movieData);
-  //   this.setState({
-  //     locations: this.props.movieData
-  //   });
-  // }
+  // TODO: implement handleclick for markers
 
   render() {
     return (
@@ -65,61 +57,3 @@ class MyMap extends React.Component {
 };
 
 export default MyMap;
-
-
-// this.setState(({locations}) => {
-//   locations: locations.merge(new Map({
-//     id: 0,
-//     position: dummyPosition,
-//   })).merge(new Map({
-//     id: 1,
-//     position: dummyPosition1,
-//   })) 
-// })
-
-// <Feature 
-//   coordinates={[-122.431297, 37.773972]}
-// />
-
-// <Layer
-//   type="circle"
-//   paint={{ "circle-radius": 30, "circle-color": "#E54E52", "circle-opacity": .8 }}>
-//   <Feature coordinates={[-122.431297, 37.773972]}/>
-// </Layer>
-
-
-
-// const initialMap = {
-//   center: [-122.431297, 37.773972],
-//   zoom: 11,
-// };
-
-// let MyMap = ({movieData}) => (
-//   <div>
-//     <ReactMapboxGl
-//       style="mapbox://styles/mapbox/streets-v9"
-//       center={initialMap.center}
-//       zoom={initialMap.zoom}
-//       accessToken={accessTokens.SODA_api}
-//       containerStyle={containerStyle}>
-
-//       <Layer
-//         type="symbol"
-//         layout={ {"icon-image": "harbor-15"} }>
-//         {console.log(movieData)}
-//         { 
-//           movieData.map((entry, index) => (
-//             <Feature 
-//               key={index}
-//               coordinates={entry.coors}
-//             />
-//           ))
-//         }
-//       </Layer>
-
-
-
-//     </ReactMapboxGl>
-//   </div>
-// );
-
