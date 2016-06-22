@@ -2,3 +2,4 @@ node_modules
 client/dist/
 client/src/accessTokens.js
 server/accessTokens.js
+npm-debug.log
