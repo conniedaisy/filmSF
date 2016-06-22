@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+// const app = express();
 const path = require('path');
 const handlers = require('./request-handlers.js');
 
@@ -11,6 +11,6 @@ app.get('/dist/bundle.js', handlers.bundle);
 
 app.get('/getCoors', handlers.getCoors);
 
-app.listen(3000, function () {
-  console.log('Listening on port 3000!');
-});
+// app.listen(3000, function () {
+//   console.log('Listening on port 3000!');
+// });
