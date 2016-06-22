@@ -5,6 +5,7 @@ import $ from 'jquery';
 import MyMap from './MyMap.jsx';
 import accessTokens from './accessTokens.js';
 
+require('../styles/style.css');
 
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>filmSF</h1>
         {
           this.state.movieData.length > 0 ? 
             <MyMap movieData={this.state.movieData}/> :

@@ -4,8 +4,8 @@ import accessTokens from './accessTokens.js';
 
 
 const containerStyle = {
-  height: "80vh",
-  width: "80vw",
+  height: "100vh",
+  width: "100vw",
 };
 
 
