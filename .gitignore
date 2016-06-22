@@ -1,5 +1,3 @@
 node_modules
 client/dist/bundle.js
-client/src/accessTokens.js
-server/accessTokens.js
 npm-debug.log
