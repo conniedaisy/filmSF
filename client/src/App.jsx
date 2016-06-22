@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import SearchBar from './SearchBar.jsx';
+// import SearchBar from './SearchBar.jsx';
 import MyMap from './MyMap.jsx';
 import accessTokens from './accessTokens.js';
 
-
+require('../styles/style.css');
 
 class App extends React.Component {
   constructor(props) {
@@ -15,43 +15,38 @@ class App extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const search = {
-      query: 'Epic Roasthouse (399 Embarcadero)'.replace(/\s+/g, ',').replace(/\(|\)/g, ''),
-      key: accessTokens.GooglePlaces_api,
-      lat: 37.77392,
-      long: -122.431297,
-      radius: '6500',
-    };
-    console.log(search.query);
-    const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?
-      query=${search.query}
-      &key=${search.key}
-      &location=${search.lat},${search.long}
-      &radius=${search.radius}`;
+  componentDidMount() {
+    this.getCoordinates();
+  }
 
-    // $.get('http://localhost:3000/getCoors', (results, error) => {
-    //   console.log('getCoors: ', results);
-    // });
-
-    const numToShow = 10;
+  getCoordinates() {
+    const numToShow = 70;
     const movieEndpoint = 'https://data.sfgov.org/resource/wwmu-gmzc.json';
-    $.get(movieEndpoint, (results, error) => {
-      // TODO: Add error handling
-      for (var i = 0; i < numToShow; i++) {
-        this.state.movieData.push(results[i]);
-      }
-      console.log('results: ', this.state.movieData);
-    });
 
-    // TODO: send to server
+    $.get(movieEndpoint, (results, error) => {
+      let params = {
+        data: [],
+      };
+      for (var i = 50; i < numToShow; i++) {
+        params.data.push(results[i]);
+      }
+      $.get('/getCoors', params, (results, error) => {
+        this.setState({
+          movieData: results.data,
+        });
+      });
+    });
   }
 
   render() {
     return (
       <div>
-        <SearchBar/>
-        <MyMap data={this.state.movieData}/>
+        <h1>filmSF</h1>
+        {
+          this.state.movieData.length > 0 ? 
+            <MyMap movieData={this.state.movieData}/> :
+            <span></span>
+        }
       </div>
     );
   }

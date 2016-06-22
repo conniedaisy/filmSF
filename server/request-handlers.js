@@ -11,17 +11,39 @@ exports.bundle = (req, res) => {
 };
 
 exports.getCoors = (req, res) => {
-  const search = {
-    query: 'Epic Roasthouse (399 Embarcadero)'.replace(/\s+/g, ',').replace(/\(|\)/g, ''),
-    key: accessTokens.GooglePlaces_api,
-    lat: 37.77392,
-    long: -122.431297,
-    radius: '6500',
+  var newData = {
+    data: [],
   };
-  const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search.query}&key=${search.key}&location=${search.lat},${search.long}&radius=${search.radius}`;
-  request(placesEndpoint, (error, response, body) => {
-    // console.log('=====> ', response.body);
-    if (error) { res.send('An error has occured: ', error); }
-    console.log('=====> ', JSON.parse(body).results[0].geometry.location);
+
+  req.query.data.forEach((entry, index) => {
+    if (entry.locations) {
+      const search = {
+        query: entry.locations.replace(/\s+/g, ',').replace(/\(|\)/g, '').replace(/[^\x00-\x7F]/g, ''),
+        key: accessTokens.GooglePlaces_api,
+        lat: 37.77392,
+        long: -122.431297,
+        radius: '6500',
+      };
+      
+      // TODO: move Google Places api request to separate utils function
+      const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search.query}&key=${search.key}&location=${search.lat},${search.long}&radius=${search.radius}`;
+      request(placesEndpoint, (error, response, body) => {
+        if (error) { console.error(error); }
+        if (JSON.parse(body).results.length > 0) {
+          entry.coors = [
+            JSON.parse(body).results[0].geometry.location.lng,
+            JSON.parse(body).results[0].geometry.location.lat 
+          ]; 
+        } else {
+          entry.coors = [0, 0]
+        }
+        newData.data.push(entry);
+        if (newData.data.length === req.query.data.length) {
+          res.send(newData);
+        }
+      });
+    } else {
+      newData.data.push(entry);
+    }
   });
 };

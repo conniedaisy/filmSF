@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import accessTokens from './accessTokens.js';
-import { Map } from 'immutable';
-// import mapboxStyle from './mapboxStyle.js';
-// import { Maki } from 'maki';
-import MapboxCSS from "./../../node_modules/react-mapbox-gl/dist/mapbox-css/mapbox-gl.css";
 
 
 const containerStyle = {
-  height: "80vh",
-  width: "80vw",
+  height: "100vh",
+  width: "100vw",
 };
+
 
 class MyMap extends React.Component {
   constructor(props) {
@@ -18,32 +15,11 @@ class MyMap extends React.Component {
     this.state = {
       center: [-122.431297, 37.773972],
       zoom: 11,
-      locations: [],
+      locations: this.props.movieData,
     };
   }
 
-  componentWillMount() {
-    // this.props.data;
-    const dummyPosition = [-122.431297, 37.773972];
-
-    this.setState({
-      locations: [{
-        id: 0,
-        position: dummyPosition,
-      }],
-    });
-
-    console.log('state: ', this.state.locations)
-
-    // this.setState({
-    //   locations: [[
-    //     {
-    //       id: 0,
-    //       position: dummyPosition,
-    //     },
-    //   ]],
-    // });
-  }
+  // TODO: implement handleclick for markers
 
   render() {
     return (
@@ -60,8 +36,13 @@ class MyMap extends React.Component {
             layout={ {"icon-image": "harbor-15"} }>
             { 
               this.state.locations.map((location, index) => (
-                <Feature 
-                  coordinates={[-122.431297, 37.773972]}
+                location.coors ? 
+                  <Feature 
+                  key={index}
+                  coordinates={location.coors} /> : 
+                  <Feature
+                  key={index}
+                  coordinates={[0, 0]}
                 />
               ))
             }
@@ -76,26 +57,3 @@ class MyMap extends React.Component {
 };
 
 export default MyMap;
-
-
-// this.setState(({locations}) => {
-//   locations: locations.merge(new Map({
-//     id: 0,
-//     position: dummyPosition,
-//   })).merge(new Map({
-//     id: 1,
-//     position: dummyPosition1,
-//   })) 
-// })
-
-// <Feature 
-//   coordinates={[-122.431297, 37.773972]}
-// />
-
-// <Layer
-//   type="circle"
-//   paint={{ "circle-radius": 30, "circle-color": "#E54E52", "circle-opacity": .8 }}>
-//   <Feature coordinates={[-122.431297, 37.773972]}/>
-// </Layer>
-
-
