@@ -18,6 +18,7 @@
 - Google Places API limits - DataSF API film locations are incomplete addresses and cross-sections. I had to the address strings as queries to the Google Places API to get the best lat/long estimate. Due to these limits, only ~20 locations are shown on the map.
 
 ## TODO
+- Implement search/filter bar
 - Make markers clickable, and add description popup on click
 - Implement persistent storage - convert all locations to lat/long and store in a database (then more markers can be displayed at once)
 - Move DataSF API call to server-side
