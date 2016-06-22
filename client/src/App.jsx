@@ -30,7 +30,7 @@ class App extends React.Component {
       for (var i = 50; i < numToShow; i++) {
         params.data.push(results[i]);
       }
-      $.get('http://localhost:3000/getCoors', params, (results, error) => {
+      $.get('/getCoors', params, (results, error) => {
         this.setState({
           movieData: results.data,
         });

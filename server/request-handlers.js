@@ -11,7 +11,7 @@ exports.bundle = (req, res) => {
 };
 
 exports.getCoors = (req, res) => {
-  let newData = {
+  var newData = {
     data: [],
   };
 
