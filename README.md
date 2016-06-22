@@ -19,7 +19,7 @@
 
 ## TODO
 - Make markers clickable, and add description popup on click
-- Implement persistent storage - convert all locations to lat/long and store in a database - 
+- Implement persistent storage - convert all locations to lat/long and store in a database (then more markers can be displayed at once)
 - Move DataSF API call to server-side
 
 ## Development
