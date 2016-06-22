@@ -3,11 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>Films in SF</title>
-    
-    <!--
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-    -->
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.css' rel='stylesheet' />
@@ -20,59 +15,3 @@
 
   </body>
 </html>
-
-<!-- 
-<div id='map' style='width: 1000px; height: 1000px;'></div>
-<script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoiY29ubmllZGFpc3kiLCJhIjoiY2lwbmN0c3F2MDAwbHR0bHp2N3lnazNsZiJ9.onM9z49ksy7fAum7Jh02hg';
-
-  var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v9'
-  });
-
-  map.on('load', function () {
-      map.addSource("markers", {
-          "type": "geojson",
-          "data": {
-              "type": "FeatureCollection",
-              "features": [{
-                  "type": "Feature",
-                  "geometry": {
-                      "type": "Point",
-                      "coordinates": [-77.03238901390978, 38.913188059745586]
-                  },
-                  "properties": {
-                      "title": "Mapbox DC",
-                      "marker-symbol": "monument"
-                  }
-              }, {
-                  "type": "Feature",
-                  "geometry": {
-                      "type": "Point",
-                      "coordinates": [-122.414, 37.776]
-                  },
-                  "properties": {
-                      "title": "Mapbox SF",
-                      "marker-symbol": "harbor"
-                  }
-              }]
-          }
-      });
-
-      map.addLayer({
-          "id": "markers",
-          "type": "symbol",
-          "source": "markers",
-          "layout": {
-              "icon-image": "{marker-symbol}-15",
-              "text-field": "{title}",
-              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-              "text-offset": [0, 0.6],
-              "text-anchor": "top"
-          }
-      });
-    });
-
-</script> 
--->
