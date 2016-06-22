@@ -1,4 +1,4 @@
-const path = require('path');
+// const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
@@ -12,6 +12,7 @@ module.exports = {
   output: {
     path: './client/dist',
     filename: 'bundle.js'
+    publicPath: '/dist/'
   },
 
   plugins: [
