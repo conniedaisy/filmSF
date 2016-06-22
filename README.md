@@ -15,7 +15,7 @@
 
 ## Challenges
 - Adding Mapbox as a React component - This is my first time using Mapbox. Mapbox typically has a quick setup, but is difficult to set up as a React component. Layering, adding features were both time-consuming. 
-- Google Places API limits - DataSF API film locations are incomplete addresses and cross-sections. I had to the address strings as queries to the Google Places API to get the best lat/long estimate.
+- Google Places API limits - DataSF API film locations are incomplete addresses and cross-sections. I had to the address strings as queries to the Google Places API to get the best lat/long estimate. Due to these limits, only ~20 locations are shown on the map.
 
 ## TODO
 - Make markers clickable, and add description popup on click
