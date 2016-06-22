@@ -21,6 +21,7 @@ exports.getCoors = (req, res) => {
   const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search.query}&key=${search.key}&location=${search.lat},${search.long}&radius=${search.radius}`;
   request(placesEndpoint, (error, response, body) => {
     // console.log('=====> ', response.body);
+    if (error) { res.send('An error has occured: ', error); }
     console.log('=====> ', JSON.parse(body).results[0].geometry.location);
   });
 };
