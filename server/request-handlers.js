@@ -3,7 +3,7 @@ const request = require('request');
 const accessTokens = require('./accessTokens.js');
 
 exports.root = (req, res) => {
-  res.sendFile(path.resolve(__dirname + '/../client/index.html'));
+  res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
 };
 
 exports.bundle = (req, res) => {
