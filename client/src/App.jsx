@@ -30,9 +30,9 @@ class App extends React.Component {
       &location=${search.lat},${search.long}
       &radius=${search.radius}`;
 
-    $.get('http://localhost:3000/getCoors', (results, error) => {
-      console.log('getCoors: ', results);
-    });
+    // $.get('http://localhost:3000/getCoors', (results, error) => {
+    //   console.log('getCoors: ', results);
+    // });
 
     const numToShow = 10;
     const movieEndpoint = 'https://data.sfgov.org/resource/wwmu-gmzc.json';

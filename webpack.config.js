@@ -7,9 +7,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'react-hot!babel'
+        loaders: [ "react-hot-loader", "babel-loader" ]
       },
       {
         test: /\.css$/, 
@@ -21,5 +21,7 @@ module.exports = {
     path: './client/dist',
     filename: 'bundle.js'
   },
-
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
 };

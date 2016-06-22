@@ -2,6 +2,10 @@ import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import accessTokens from './accessTokens.js';
 import { Map } from 'immutable';
+// import mapboxStyle from './mapboxStyle.js';
+// import { Maki } from 'maki';
+import MapboxCSS from "./../../node_modules/react-mapbox-gl/dist/mapbox-css/mapbox-gl.css";
+
 
 const containerStyle = {
   height: "80vh",
@@ -21,13 +25,24 @@ class MyMap extends React.Component {
   componentWillMount() {
     // this.props.data;
     const dummyPosition = [-122.431297, 37.773972];
+
     this.setState({
-      locations: [
-        {
-          position: dummyPosition,
-        },
-      ],
+      locations: [{
+        id: 0,
+        position: dummyPosition,
+      }],
     });
+
+    console.log('state: ', this.state.locations)
+
+    // this.setState({
+    //   locations: [[
+    //     {
+    //       id: 0,
+    //       position: dummyPosition,
+    //     },
+    //   ]],
+    // });
   }
 
   render() {
@@ -41,18 +56,18 @@ class MyMap extends React.Component {
           containerStyle={containerStyle}>
 
           <Layer
-            id="marker"
             type="symbol"
-            layout={{ "icon-image": "marker-15" }}>
+            layout={ {"icon-image": "harbor-15"} }>
             { 
-              this.state.locations.map((location, index) => {
+              this.state.locations.map((location, index) => (
                 <Feature 
-                  key={index}
-                  coordinates={location.position}
+                  coordinates={[-122.431297, 37.773972]}
                 />
-              })
+              ))
             }
           </Layer>
+
+
 
         </ReactMapboxGl>
       </div>
@@ -61,3 +76,26 @@ class MyMap extends React.Component {
 };
 
 export default MyMap;
+
+
+// this.setState(({locations}) => {
+//   locations: locations.merge(new Map({
+//     id: 0,
+//     position: dummyPosition,
+//   })).merge(new Map({
+//     id: 1,
+//     position: dummyPosition1,
+//   })) 
+// })
+
+// <Feature 
+//   coordinates={[-122.431297, 37.773972]}
+// />
+
+// <Layer
+//   type="circle"
+//   paint={{ "circle-radius": 30, "circle-color": "#E54E52", "circle-opacity": .8 }}>
+//   <Feature coordinates={[-122.431297, 37.773972]}/>
+// </Layer>
+
+
