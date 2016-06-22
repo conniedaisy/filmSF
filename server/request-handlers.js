@@ -23,12 +23,13 @@ exports.getCoors = (req, res) => {
     };
     const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search.query}&key=${search.key}&location=${search.lat},${search.long}&radius=${search.radius}`;
     request(placesEndpoint, (error, response, body) => {
-      if (error) { res.send('An error has occured: ', error); }
+      if (error) { console.error(error); }
       newData.data[index].coors = [
         JSON.parse(body).results[0].geometry.location.lat, 
         JSON.parse(body).results[0].geometry.location.lng
       ]; 
       if (index === newData.data.length-1) {
+        console.log('newData: ', newData);
         res.send(newData);
       }
     });

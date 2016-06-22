@@ -14,7 +14,7 @@ class App extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const numToShow = 2;
     const movieEndpoint = 'https://data.sfgov.org/resource/wwmu-gmzc.json';
 
@@ -27,13 +27,12 @@ class App extends React.Component {
       }
       $.get('http://localhost:3000/getCoors', params, (results, error) => {
         if (error) { console.log(error); }
-        console.log('getCoors: ', results);
         this.setState({
           movieData: results.data,
         });
+        console.log('App state: ', this.state.movieData);
       });
     });
-
   }
 
   render() {

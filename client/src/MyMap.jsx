@@ -20,18 +20,15 @@ class MyMap extends React.Component {
     };
   }
 
-  componentWillMount() {
-    // this.props.data;
-    const dummyPosition = [-122.431297, 37.773972];
+  componentWillReceiveProps() {
+    // const dummyPosition = [-122.431297, 37.773972];
 
+    console.log('props: ', this.props.movieData);
     this.setState({
-      locations: [{
-        id: 0,
-        position: dummyPosition,
-      }],
+      locations: this.props.movieData
     });
 
-    console.log('state: ', this.state.locations)
+    // console.log('state: ', this.state.locations)
 
     // this.setState({
     //   locations: [[
@@ -59,7 +56,7 @@ class MyMap extends React.Component {
             { 
               this.state.locations.map((location, index) => (
                 <Feature 
-                  coordinates={[-122.431297, 37.773972]}
+                  coordinates={location.coors}
                 />
               ))
             }
