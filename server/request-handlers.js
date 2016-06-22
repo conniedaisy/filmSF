@@ -11,27 +11,49 @@ exports.bundle = (req, res) => {
 };
 
 exports.getCoors = (req, res) => {
-  let newData = req.query; // {data: [{}, {}]}
-
+  let newData = {
+    data: [],
+  }; // {data: [{}, {}]}
+  console.log('REQUEST: ', req.query.data)
   req.query.data.forEach((entry, index) => {
-    const search = {
-      query: entry.locations.replace(/\s+/g, ',').replace(/\(|\)/g, ''),
-      key: accessTokens.GooglePlaces_api,
-      lat: 37.77392,
-      long: -122.431297,
-      radius: '6500',
-    };
-    const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search.query}&key=${search.key}&location=${search.lat},${search.long}&radius=${search.radius}`;
-    request(placesEndpoint, (error, response, body) => {
-      if (error) { console.error(error); }
-      newData.data[index].coors = [
-        JSON.parse(body).results[0].geometry.location.lat, 
-        JSON.parse(body).results[0].geometry.location.lng
-      ]; 
-      if (index === newData.data.length-1) {
-        console.log('newData: ', newData);
-        res.send(newData);
-      }
-    });
+    if (entry.locations) {
+      const search = {
+        query: entry.locations.replace(/\s+/g, ',').replace(/\(|\)/g, '').replace(/[^\x00-\x7F]/g, ''),
+        key: accessTokens.GooglePlaces_api,
+        lat: 37.77392,
+        long: -122.431297,
+        radius: '6500',
+      };
+      console.log('query: ', search.query)
+      const placesEndpoint = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search.query}&key=${search.key}&location=${search.lat},${search.long}&radius=${search.radius}`;
+      request(placesEndpoint, (error, response, body) => {
+        if (error) { console.error(error); }
+        // console.log(JSON.parse(body).results);
+        if (JSON.parse(body).results.length > 0) {
+          entry.coors = [
+            JSON.parse(body).results[0].geometry.location.lng,
+            JSON.parse(body).results[0].geometry.location.lat 
+          ]; 
+        } else {
+          entry.coors = [0, 0]
+        }
+        newData.data.push(entry);
+        // if (index === newData.data.length-1) {
+        //   res.send(newData);
+        // }
+        if (newData.data.length === req.query.data.length) {
+          // console.log('newData: ', newData);
+          res.send(newData);
+        }
+      });
+    } else {
+      newData.data.push(entry);
+    }
+
   });
+};
+
+const coorsRequest = () => {
+
+
 };

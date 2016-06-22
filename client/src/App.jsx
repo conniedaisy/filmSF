@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const numToShow = 2;
+    const numToShow = 22;
     const movieEndpoint = 'https://data.sfgov.org/resource/wwmu-gmzc.json';
 
     $.get(movieEndpoint, (results, error) => {
@@ -25,6 +25,7 @@ class App extends React.Component {
       for (var i = 0; i < numToShow; i++) {
         params.data.push(results[i]);
       }
+      console.log('params: ', params.data);
       $.get('http://localhost:3000/getCoors', params, (results, error) => {
         if (error) { console.log(error); }
         this.setState({
@@ -39,7 +40,11 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar/>
-        <MyMap movieData={this.state.movieData}/>
+        {
+          this.state.movieData.length > 0 ? 
+            <MyMap movieData={this.state.movieData}/> :
+            <span></span>
+        }
       </div>
     );
   }

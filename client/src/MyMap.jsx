@@ -16,29 +16,18 @@ class MyMap extends React.Component {
     this.state = {
       center: [-122.431297, 37.773972],
       zoom: 11,
-      locations: [],
+      locations: this.props.movieData,
     };
+    console.log('-->', this.state.locations)
   }
 
-  componentWillReceiveProps() {
-    // const dummyPosition = [-122.431297, 37.773972];
-
-    console.log('props: ', this.props.movieData);
-    this.setState({
-      locations: this.props.movieData
-    });
-
-    // console.log('state: ', this.state.locations)
-
-    // this.setState({
-    //   locations: [[
-    //     {
-    //       id: 0,
-    //       position: dummyPosition,
-    //     },
-    //   ]],
-    // });
-  }
+  // componentWillReceiveProps() {
+  //   // const dummyPosition = [-122.431297, 37.773972];
+  //   console.log('props: ', this.props.movieData);
+  //   this.setState({
+  //     locations: this.props.movieData
+  //   });
+  // }
 
   render() {
     return (
@@ -55,8 +44,13 @@ class MyMap extends React.Component {
             layout={ {"icon-image": "harbor-15"} }>
             { 
               this.state.locations.map((location, index) => (
-                <Feature 
-                  coordinates={location.coors}
+                location.coors ? 
+                  <Feature 
+                  key={index}
+                  coordinates={location.coors} /> : 
+                  <Feature
+                  key={index}
+                  coordinates={[0, 0]}
                 />
               ))
             }
@@ -93,4 +87,39 @@ export default MyMap;
 //   <Feature coordinates={[-122.431297, 37.773972]}/>
 // </Layer>
 
+
+
+// const initialMap = {
+//   center: [-122.431297, 37.773972],
+//   zoom: 11,
+// };
+
+// let MyMap = ({movieData}) => (
+//   <div>
+//     <ReactMapboxGl
+//       style="mapbox://styles/mapbox/streets-v9"
+//       center={initialMap.center}
+//       zoom={initialMap.zoom}
+//       accessToken={accessTokens.SODA_api}
+//       containerStyle={containerStyle}>
+
+//       <Layer
+//         type="symbol"
+//         layout={ {"icon-image": "harbor-15"} }>
+//         {console.log(movieData)}
+//         { 
+//           movieData.map((entry, index) => (
+//             <Feature 
+//               key={index}
+//               coordinates={entry.coors}
+//             />
+//           ))
+//         }
+//       </Layer>
+
+
+
+//     </ReactMapboxGl>
+//   </div>
+// );
 
